@@ -1,0 +1,36 @@
+import PIL sizi yanıltmasın bunun çalışması için Pillow kütüphanesinin yüklü olması gerekiyor.
+pip install pillow
+rawpy kütüphanesini kullanmak içinb libraw kütüphanesinin yüklü olması gerekmektedir. Bunu işletim sisteminin bağlılıklarınında
+    tam olması gerekmekte.
+libraw kütüphanesinin yüklenmesi biraz dert olabilir.
+libraw kütüphanesi c++ kütüphanesi olup libraw'ı python'a kurmak için cython ve gcc kütüphanelerinin kurulması gerekmektedir.
+gerekli bağlılıkları yüklü ise( Macos'da xcode-select) yüklü değilse terminal alanına "xcode-select --install" yazabilirsiniz.
+ayrıca python 3.11'in python3-dev paketinin yüklü olması gerekmektedir. "brew install python@3.11" ile yükleyebilirsiniz.
+cython'nun kullanacağı modül gcc modülüdür. Bunu aktif yapmak için önce cython'un istekleri üzerine hareket etmek gerekir.
+Şimdi pycharm yada buna benzer bir ide ile bir libraw.pyx dosyası oluşturacağız. ve lazım olduğunda kullanmak üzere bekliyoruz.
+Adım adım başlıyoruz.
+
+1. Terminal ekranına "pip install Cython" komutu ile Cython'u kuruyoruz.
+
+2. Aşağıdaki komutları termianl ekranına kopyala yapıştır diyoruz. 0.21.1 şu an kullanılan en son sürüm. Kontrol etmenizi tavsiye ederim
+Hata alırsanız "make install" komutunu "sudo make install" ile değiştirin.
+Ayrıca kodları tek tek yazarak ya da hepsini yapıştırarak çalıştırabilirsiniz.
+    "curl -O https://www.libraw.org/data/LibRaw-0.21.1.tar.gz
+    tar xfz LibRaw-0.21.1.tar.gz
+    cd LibRaw-0.21.1
+    ./configure
+    make
+    make install"
+
+3. Oluşturuduğumuz libraw.pyx dosyasını Libraw-0-21.1 klasörüne kopyalayın.
+
+4. Cytron arayüzünü derliyoruz aşağıdaki kodları kullanabiliriz.
+    "cython libraw.pyx"
+    "gcc -shared -fPIC -I/usr/local/include -L/usr/local/lib -lraw -o libraw.so libraw.c"
+5. Python.h hatası alıyorusanız aşağıdaki komutu kullanabilirsiniz.
+    "python3-config --includes"
+        Çıktı geldikten sonra ordaki yolun başına "-I" koyarak belirtmeliyiz. Aşağıdaki gibi
+       "-I/Library/Frameworks/Python.framework/Versions/3.9/include/python3.9 -I/Library/Frameworks/Python.framework/Versions/3.9/include/python3.9"
+       libraw.c oluşmuş olması gerekiyor.
+
+
