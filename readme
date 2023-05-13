@@ -1,3 +1,6 @@
+Öncelikle işlem yapacağınız resimler arasında dng uzantılı dosya yok ise AstrOkay1 sürümününde güncellenecektir. Dng ile işlem yapılmayacaksa
+Pillow kütüphanesi gereksiz olup yinede bağlılıklar kurmak gerektiğini belirtmek isterim. Bunun için diğer sürümde Pillow kütüphanesi
+olmadan kod paylaşımı yapacağım. Program beta sürümünde ve çok eksiklikleri vardır. Üzerinde çalışmaya devam ediyorum.
 import PIL sizi yanıltmasın bunun çalışması için Pillow kütüphanesinin yüklü olması gerekiyor.
 pip install pillow
 rawpy kütüphanesini kullanmak içinb libraw kütüphanesinin yüklü olması gerekmektedir. Bunu işletim sisteminin bağlılıklarınında
